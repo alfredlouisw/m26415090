@@ -1,0 +1,19 @@
+1. Open Terminal
+   Type SSH m26415070@opensource.petra.ac.id
+   Type in some cmd (ls -al, cd, mkdir, rm)
+   Type exit to exit the terminal
+
+
+3. type moint (/bin/mount)
+   locate tracepath
+
+5. Use Tab
+
+7. echo "Today Is $(date + '%A. %B, %d, %Y')"
+
+8. echo $HOSTNAME
+   echo $USERNAME
+   echo $SHELL
+   echo $HOME
+
+10. man -k ^mount
