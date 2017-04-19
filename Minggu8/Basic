@@ -1,0 +1,31 @@
+The following example demonstrates the most basic application you could write with CherryPy. It starts a server and hosts an application that will be served at request reaching http://127.0.0.1:8080/
+import cherrypy
+
+
+class HelloWorld(object):
+    @cherrypy.expose
+    def index(self):
+        return "Hello world!"
+
+
+if __name__ == '__main__':
+    cherrypy.quickstart(HelloWorld())
+Store this code snippet into a file named tut01.py and execute it as follows:
+
+$ python tut01.py
+This will display something along the following:
+
+[24/Feb/2014:21:01:46] ENGINE Listening for SIGHUP.
+[24/Feb/2014:21:01:46] ENGINE Listening for SIGTERM.
+[24/Feb/2014:21:01:46] ENGINE Listening for SIGUSR1.
+[24/Feb/2014:21:01:46] ENGINE Bus STARTING
+CherryPy Checker:
+The Application mounted at '' has an empty config.
+
+[24/Feb/2014:21:01:46] ENGINE Started monitor thread 'Autoreloader'.
+[24/Feb/2014:21:01:46] ENGINE Started monitor thread '_TimeoutMonitor'.
+[24/Feb/2014:21:01:46] ENGINE Serving on http://127.0.0.1:8080
+[24/Feb/2014:21:01:46] ENGINE Bus STARTED
+This tells you several things. The first three lines indicate the server will handle signal for you. The next line tells you the current state of the server, as that point it is in STARTING stage. Then, you are notified your application has no specific configuration set to it. Next, the server starts a couple of internal utilities that we will explain later. Finally, the server indicates it is now ready to accept incoming communications as it listens on the address 127.0.0.1:8080. In other words, at that stage your application is ready to be used.
+
+Before moving on, let’s discuss the message regarding the lack of configuration. By default, CherryPy has a feature which will review the syntax correctness of settings you could provide to configure the application. When none are provided, a warning message is thus displayed in the logs. That log is harmless and will not prevent CherryPy from working. You can refer to the documentation above to understand how to set the configuration.
