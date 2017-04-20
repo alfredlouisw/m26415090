@@ -1,0 +1,26 @@
+CherryPy – Configuration
+The framework comes with its own configuration system allowing you to parameterize the HTTP server. The settings for the configuration can be stored either in a text file with syntax close to the INI format or as a complete Python dictionary.
+
+To configure the CherryPy server instance, the developer needs to use the global section of the settings.
+
+global_conf = {
+   'global': {
+      'server.socket_host': 'localhost',
+      'server.socket_port': 8080,
+   },
+}
+
+application_conf = {
+   '/style.css': {
+      'tools.staticfile.on': True,
+      'tools.staticfile.filename': os.path.join(_curdir, 'style.css'),
+   }
+}
+
+This could be represented in a file like this:
+[global]
+server.socket_host = "localhost"
+server.socket_port = 8080
+[/style.css]
+tools.staticfile.on = True
+tools.staticfile.filename = "/full/path/to.style.css"
