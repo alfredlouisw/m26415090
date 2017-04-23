@@ -1,0 +1,52 @@
+Basic Authentication Tool
+The purpose of this tool is to provide basic authentication to the application designed in the application.
+
+Arguments
+This tool uses the following arguments −
+
+Name	Default	Description
+realm	N/A	String defining the realm value.
+users	N/A	Dictionary of the form − username:password or a Python callable function returning such a dictionary.
+encrypt	None	Python callable used to encrypt the password returned by the client and compare it with the encrypted password provided in the users dictionary.
+Example
+Let us take an example to understand how it works −
+
+import sha
+import cherrypy
+
+class Root:
+@cherrypy.expose
+def index(self):
+
+return """
+<html>
+   <head></head>
+   <body>
+      <a href = "admin">Admin </a>
+   </body>
+</html>
+""" 
+
+class Admin:
+
+@cherrypy.expose
+def index(self):
+return "This is a private area"
+
+if __name__ == '__main__':
+def get_users():
+# 'test': 'test'
+return {'test': 'b110ba61c4c0873d3101e10871082fbbfd3'}
+def encrypt_pwd(token):
+
+return sha.new(token).hexdigest()
+   conf = {'/admin': {'tools.basic_auth.on': True,
+      tools.basic_auth.realm': 'Website name',
+      'tools.basic_auth.users': get_users,
+      'tools.basic_auth.encrypt': encrypt_pwd}}
+   root = Root()
+root.admin = Admin()
+cherrypy.quickstart(root, '/', config=conf)
+The get_users function returns a hard-coded dictionary but also fetches the values from a database or anywhere else. The class admin includes this function which makes use of an authentication built-in tool of CherryPy. The authentication encrypts the password and the user Id.
+
+The basic authentication tool is not really secure, as the password can be encoded and decoded by an intruder.
