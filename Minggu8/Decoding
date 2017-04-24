@@ -1,0 +1,38 @@
+Decoding Tool
+The purpose of this tool is to decode the incoming request parameters.
+
+Arguments
+This tool uses the following arguments −
+
+Name	Default	Description
+encoding	None	It looks for the content-type header
+Default_encoding	"UTF-8"	Default encoding to be used when none is provided or found.
+Example
+Let us take an example to understand how it works −
+
+import cherrypy
+from cherrypy import tools
+
+class Root:
+@cherrypy.expose
+def index(self):
+
+return """ 
+<html>
+   <head></head>
+   <body>
+      <form action = "hello.html" method = "post">
+         <input type = "text" name = "name" value = "" />
+         <input type = ”submit” name = "submit"/>
+      </form>
+   </body>
+</html>
+"""
+
+@cherrypy.expose
+@tools.decode(encoding='ISO-88510-1')
+def hello(self, name):
+return "Hello %s" % (name, )
+if __name__ == '__main__':
+cherrypy.quickstart(Root(), '/')
+The above code takes a string from the user and it will redirect the user to "hello.html" page where it will be displayed as “Hello” with the given name.
