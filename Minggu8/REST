@@ -1,0 +1,27 @@
+REST — Representational State Transfer
+A type of remote access protocol, which, transfers state from client to server which can be used to manipulate state instead of calling remote procedures.
+
+Does not define any specific encoding or structure and ways of returning useful error messages.
+
+Uses HTTP "verbs" to perform state transfer operations.
+
+The resources are uniquely identified using URL.
+
+It is not an API but instead an API transport layer.
+
+REST maintains the nomenclature of resources on a network and provides unified mechanism to perform operations on these resources. Each resource is identified by at least one identifier. If the REST infrastructure is implemented with the base of HTTP, then these identifiers are termed as Uniform Resource Identifiers (URIs).
+
+The following are the two common subsets of the URI set −
+
+Subset	Full form	Example
+URL	Uniform Resource Locator	http://www.gmail.com/
+URN	Uniform Resource Name	urn:isbn:0-201-71088-9 urn:uuid:13e8cf26-2a25-11db-8693-000ae4ea7d46
+Before understanding the implementation of CherryPy architecture, let’s focus on the architecture of CherryPy.
+
+CherryPy includes the following three components −
+
+cherrypy.engine − It controls process startup/teardown and event handling.
+
+cherrypy.server − It configures and controls the WSGI or HTTP server.
+
+cherrypy.tools − A toolbox of utilities that are orthogonal to processing an HTTP request.
